@@ -1,0 +1,21 @@
+{
+  "_note": "Seuls les faits au statut confirmed sont donnés au rédacteur. Un fait unconfirmed ne doit jamais apparaître dans un texte publié.",
+  "facts": [
+    { "id": "identite", "status": "confirmed", "text": "ClayImmo est le nom commercial de JOOYAAB SAS, agence immobilière de transaction à Paris, maison indépendante : pas de réseau franchisé, pas de standard téléphonique.", "source": "clayimmo-publications-semaine-1, 21/09/2026", "numbers": [] },
+    { "id": "adresse", "status": "confirmed", "text": "Adresse de l'agence : 6 rue Stanislas, Paris 6e.", "source": "clayimmo-publications-semaine-1", "numbers": ["6"] },
+    { "id": "telephone", "status": "confirmed", "text": "Téléphone de l'agence : 01 45 51 62 13. Site : clayimmo.com.", "source": "clayimmo-publications-semaine-1", "numbers": ["01 45 51 62 13"] },
+    { "id": "interlocuteur", "status": "confirmed", "text": "Le client traite avec la personne qui vend son bien, du premier rendez-vous jusqu'à l'acte.", "source": "clayimmo-publications-semaine-1", "numbers": [] },
+    { "id": "honoraires", "status": "confirmed", "text": "Les honoraires sont affichés publiquement sur le site, ce qui reste rare dans le métier.", "source": "clayimmo-publications-semaine-1", "numbers": [] },
+    { "id": "portefeuille", "status": "confirmed", "text": "Le portefeuille de ventes réalisées est consultable sur le site (rubrique Vendus récemment).", "source": "clayimmo-publications-semaine-1", "numbers": [] },
+    { "id": "diversite", "status": "confirmed", "text": "L'agence a vendu du box de 12 m² à l'appartement de 265 m² face au Champ-de-Mars.", "source": "clayimmo-publications-semaine-1", "numbers": ["12", "265"] },
+    { "id": "saint-germain", "status": "confirmed", "text": "Vente à Saint-Germain-des-Prés : 109 m², cinq pièces, étage noble.", "source": "clayimmo-publications-semaine-1", "numbers": ["109", "5"] },
+    { "id": "madeleine", "status": "confirmed", "text": "Vente de prestige à Élysées-Madeleine : 322 m², menée en discrétion.", "source": "clayimmo-marketing-digital-plan", "numbers": ["322"] },
+    { "id": "avis", "status": "confirmed", "text": "La fiche Google de l'agence affiche une note de 4,9 sur 10 avis (relevé du 8 octobre 2026).", "source": "capture fiche Google, 08/10/2026", "numbers": ["4,9", "10"] },
+    { "id": "demembrement", "status": "confirmed", "text": "L'expertise de démembrement et de nue-propriété est portée par la société sœur Viva Viager. Le mot viager ne s'emploie que dans le nom Viva Viager.", "source": "clayimmo-marketing-digital-plan", "numbers": [] },
+    { "id": "estimation", "status": "confirmed", "text": "L'agence propose une estimation gratuite, sans engagement, fondée sur les ventes réellement signées dans la rue et non sur une moyenne d'arrondissement. L'avis est argumenté, pas un simple chiffre.", "source": "clayimmo-publications-semaine-1", "numbers": [] },
+    { "id": "zone", "status": "confirmed", "text": "Zone d'intervention : Paris, Hauts-de-Seine et Grand Paris.", "source": "clayimmo-publications-semaine-1", "numbers": [] },
+    { "id": "depuis-2012", "status": "unconfirmed", "text": "Mention « depuis 2012 » et « quatorze ans de ventes » : jamais confirmée par les associés.", "source": "clayimmo-v0.17-etat-site", "numbers": ["2012", "14"] },
+    { "id": "delai-24h", "status": "unconfirmed", "text": "Promesse de réponse sous 24 heures à une demande d'estimation : à confirmer avec les associés.", "source": "échange du 08/10/2026", "numbers": ["24"] }
+  ],
+  "global_numbers": ["1", "2", "3"]
+}

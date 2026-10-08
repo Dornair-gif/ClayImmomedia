@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClayImmo Moteur</title>
+<style>
+:root{--bg:#F4F6F7;--ink:#1F2429;--mute:#5d6770;--line:#d9dee2;--card:#fff;--orange:#E85D10;--ok:#1e7a4c;--warn:#a86400;--err:#b3261e}
+@media (prefers-color-scheme:dark){:root{--bg:#14181b;--ink:#eceff1;--mute:#9aa5ad;--line:#2c343a;--card:#1c2226;--orange:#ff7a33;--ok:#58c08a;--warn:#e0a040;--err:#ff8a80}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 Inter,system-ui,sans-serif}
+header{padding:20px 16px 8px;max-width:960px;margin:auto}
+h1{font-size:20px;margin:0 0 4px}h1 span{color:var(--orange)}
+.sub{color:var(--mute);font-size:13px}
+.bar,.tabs{max-width:960px;margin:8px auto;padding:0 16px;display:flex;gap:8px;flex-wrap:wrap}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 12px;border-radius:8px;cursor:pointer}
+button.primary{background:var(--orange);border-color:var(--orange);color:#fff}
+button:disabled{opacity:.45;cursor:default}
+.tabs button.on{border-color:var(--orange);color:var(--orange)}
+main{max-width:960px;margin:auto;padding:0 16px 80px}
+.week{margin:22px 0 6px;font-weight:600;color:var(--mute);font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:8px 0}
+.head{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.chip{font-size:12px;padding:2px 8px;border-radius:99px;border:1px solid var(--line);color:var(--mute)}
+.chip.s-approved,.chip.s-queued,.chip.s-sent{color:var(--ok);border-color:var(--ok)}
+.chip.s-needs_edit,.chip.s-error,.chip.s-needs_data{color:var(--err);border-color:var(--err)}
+.title{font-weight:600}
+textarea,input{width:100%;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px}
+textarea{min-height:130px;resize:vertical}
+.row{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap}.row input{flex:1;min-width:180px}
+.lint{font-size:13px;margin-top:6px}.lint .e{color:var(--err)}.lint .w{color:var(--warn)}
+.msg{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:10px;max-width:90vw}
+.cfg{font-size:13px;margin:6px 0}.cfg b.no{color:var(--err)}.cfg b.yes{color:var(--ok)}
+</style>
+</head>
+<body>
+<header>
+  <h1>ClayImmo <span>moteur de publication</span></h1>
+  <div class="sub">Planification sur six mois, rédaction contrôlée par les règles de la maison, validation humaine, puis programmation dans Buffer.</div>
+  <div class="cfg" id="cfg"></div>
+</header>
+<div class="bar">
+  <button class="primary" id="plan">Planifier 26 semaines</button>
+  <button id="gen">Rédiger les brouillons du mois affiché</button>
+  <button id="appr">Approuver le mois (sans erreur)</button>
+  <button id="sync">Synchroniser Buffer</button>
+  <select id="month" style="padding:7px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink)"></select>
+</div>
+<div class="tabs" id="tabs"></div>
+<div class="bar"><div class="sub" id="job"></div></div>
+<main id="list"></main>
+<script>
+const STATUS={planned:"À rédiger",needs_data:"Données à fournir",drafted:"À valider",needs_edit:"À corriger",approved:"Approuvée",queued:"Dans Buffer",sent:"Envoyée",passed:"Échéance passée",error:"Erreur"};
+const CH={linkedin:"LinkedIn",instagram:"Instagram",google:"Fiche Google"};
+let S={posts:[],count:{},config:{}},tab="all",month="";
+const $=(s)=>document.querySelector(s);
+const el=(t,a={},...k)=>{const e=document.createElement(t);for(const[x,v]of Object.entries(a))x==="class"?e.className=v:x.startsWith("on")?e.addEventListener(x.slice(2),v):e[x]=v;for(const c of k)e.append(c);return e};
+const toast=(m)=>{const d=el("div",{class:"msg"},m);document.body.append(d);setTimeout(()=>d.remove(),3500)};
+async function api(m,u,b){const r=await fetch(u,{method:m,headers:{"content-type":"application/json"},body:b?JSON.stringify(b):undefined});const j=await r.json();if(!r.ok)throw new Error(j.error||r.status);return j}
+async function load(){S=await api("GET","/api/state");render()}
+function months(){return[...new Set(S.posts.map(p=>p.date.slice(0,7)))]}
+function render(){
+  const c=S.config;
+  $("#cfg").replaceChildren(el("span",{},"Clé Buffer : ",el("b",{class:c.bufferKey?"yes":"no"},c.bufferKey?"présente":"absente (simulation)"),"   Clé de rédaction : ",el("b",{class:c.anthropicKey?"yes":"no"},c.anthropicKey?"présente":"absente"),`   File Buffer : ${c.maxQueue} publications maximum en attente`));
+  const ms=months();if(!month||!ms.includes(month))month=ms[0]||"";
+  $("#month").replaceChildren(...ms.map(m=>el("option",{value:m,selected:m===month},m)));
+  $("#tabs").replaceChildren(...[["all","Tout"],...Object.entries(STATUS)].map(([k,v])=>el("button",{class:tab===k?"on":"",onclick:()=>{tab=k;render()}},`${v}${k==="all"?"":" ("+(S.count[k]||0)+")"}`)));
+  const j=S.job;$("#job").textContent=j?(j.running?`Rédaction en cours : ${j.done} sur ${j.total}`:`Dernier lot : ${j.done} sur ${j.total}, ${j.failed.length} échec(s)`):"";
+  const list=S.posts.filter(p=>(tab==="all"||p.status===tab)&&(!month||p.date.startsWith(month)));
+  const out=[];let wk="";
+  for(const p of list){
+    const w=weekLabel(p.date);if(w!==wk){wk=w;out.push(el("div",{class:"week"},w))}
+    out.push(card(p));
+  }
+  $("#list").replaceChildren(...(out.length?out:[el("p",{class:"sub"},"Rien à afficher. Lance d'abord la planification.")]));
+}
+function weekLabel(d){const x=new Date(d+"T12:00:00Z");const day=(x.getUTCDay()+6)%7;x.setUTCDate(x.getUTCDate()-day);return "Semaine du "+x.toLocaleDateString("fr-FR",{day:"numeric",month:"long",timeZone:"UTC"})}
+function card(p){
+  const ta=el("textarea",{value:p.text,placeholder:p.status==="needs_data"?"Renseigne d'abord les données ci-dessous, puis rédige.":"Texte de la publication"});
+  const data=el("textarea",{value:p.data||"",placeholder:"Données de l'agence (quartier, surface, contexte, avis mot pour mot). Rien d'autre ne sera utilisé.",style:"min-height:70px"});
+  const img=el("input",{value:p.image||"",placeholder:"Adresse de l'image (obligatoire pour Instagram), ou PORTRAIT:pascale"});
+  const date=el("input",{type:"date",value:p.date,style:"max-width:160px;flex:none"});
+  const time=el("input",{type:"time",value:p.time,style:"max-width:110px;flex:none"});
+  const act=async(f,ok)=>{try{await f();await load();ok&&toast(ok)}catch(e){toast(e.message)}};
+  const save=()=>act(()=>api("PATCH","/api/posts/"+p.id,{text:ta.value,data:data.value,image:img.value,date:date.value,time:time.value}),"Enregistré");
+  const lock=p.status==="queued"||p.status==="sent"||p.status==="passed";
+  const l=el("div",{class:"lint"});
+  (p.lint?.errors||[]).forEach(e=>l.append(el("div",{class:"e"},"À corriger : "+e)));
+  (p.lint?.warnings||[]).forEach(w=>l.append(el("div",{class:"w"},"À vérifier : "+w)));
+  if(p.error)l.append(el("div",{class:"e"},p.error));
+  return el("div",{class:"card"},
+    el("div",{class:"head"},el("span",{class:"chip"},CH[p.channel]),el("span",{class:"chip"},p.pillar),el("span",{class:"chip s-"+p.status},STATUS[p.status]||p.status),el("span",{class:"title"},p.title)),
+    ta,el("div",{class:"sub"},p.visuel?"Visuel suggéré : "+p.visuel:""),
+    (p.status==="needs_data"||p.data)?data:"",
+    el("div",{class:"row"},date,time,img),l,
+    el("div",{class:"row"},
+      el("button",{disabled:lock,onclick:()=>act(()=>api("POST",`/api/posts/${p.id}/generate`),"Rédigée")},p.text?"Régénérer":"Rédiger"),
+      el("button",{disabled:lock,onclick:save},"Enregistrer"),
+      p.status==="approved"?el("button",{onclick:()=>act(()=>api("POST",`/api/posts/${p.id}/unapprove`))},"Retirer l'approbation"):el("button",{class:"primary",disabled:lock,onclick:()=>act(async()=>{await api("PATCH","/api/posts/"+p.id,{text:ta.value,data:data.value,image:img.value});await api("POST",`/api/posts/${p.id}/approve`)},"Approuvée")},"Approuver"),
+      el("button",{disabled:lock,onclick:()=>confirm("Supprimer cette publication du calendrier ?")&&act(()=>api("DELETE","/api/posts/"+p.id))},"Supprimer")));
+}
+$("#plan").onclick=async()=>{try{const r=await api("POST","/api/plan",{weeks:26});toast(r.created+" emplacements créés");load()}catch(e){toast(e.message)}};
+$("#gen").onclick=async()=>{try{const [y,m]=month.split("-");const last=new Date(Date.UTC(+y,+m,0)).getUTCDate();const r=await api("POST","/api/generate-batch",{from:month+"-01",to:month+"-"+String(last).padStart(2,"0")});toast(r.started+" rédactions lancées");}catch(e){toast(e.message)}};
+$("#appr").onclick=async()=>{try{const [y,m]=month.split("-");const last=new Date(Date.UTC(+y,+m,0)).getUTCDate();const r=await api("POST","/api/approve-range",{from:month+"-01",to:month+"-"+String(last).padStart(2,"0")});toast(r.approved+" approuvées");load()}catch(e){toast(e.message)}};
+$("#sync").onclick=async()=>{try{const r=await api("POST","/api/sync");toast((r.log||[]).join(" ")||"Rien à envoyer");load()}catch(e){toast(e.message)}};
+$("#month").onchange=(e)=>{month=e.target.value;render()};
+load();setInterval(()=>{if(S.job&&S.job.running)load()},5000);
+</script>
+</body>
+</html>
