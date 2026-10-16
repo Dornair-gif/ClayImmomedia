@@ -8,6 +8,7 @@ import { lint } from "./lib/rules.js";
 import { feed, maxQueue } from "./lib/feeder.js";
 import { hasToken, discoverChannels } from "./lib/buffer.js";
 import { publishReel } from "./lib/reel.js";
+import { schedulePlanned } from "./lib/planned.js";
 
 store.load();
 const PORT = Number(process.env.PORT || 3000);
@@ -148,5 +149,6 @@ async function handle(req, res) {
 http.createServer((req, res) => handle(req, res).catch((e) => send(res, 500, { error: String(e) }))).listen(PORT, () => {
   console.log(`ClayImmo moteur sur le port ${PORT}`);
   setTimeout(() => publishReel().catch((e) => console.error("[reel] échec :", e.message)), 20000);
+  setTimeout(() => schedulePlanned().catch((e) => console.error("[planned] échec :", e.message)), 35000);
 });
 setInterval(() => feed().then((r) => r.log?.length && console.log(r.log.join("\n"))).catch((e) => console.error("feed:", e.message)), 10 * 60e3);
