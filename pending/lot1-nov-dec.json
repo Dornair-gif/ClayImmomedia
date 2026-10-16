@@ -1,0 +1,149 @@
+{
+ "thumbnailOffsetMs": 300,
+ "items": [
+  {
+   "key": "w1-li-lun",
+   "channel": "linkedin",
+   "dueAt": "2026-11-23T08:15:00+01:00",
+   "images": [
+    "c6_retract-1.jpg"
+   ],
+   "alt": "Votre acheteur a signé. Il peut encore dire non.",
+   "text": "Un compromis signé n'est pas encore une vente conclue.\n\nL'acquéreur non professionnel dispose de dix jours pour se rétracter, sans motif et sans pénalité (article L271-1 du Code de la construction et de l'habitation).\n\nLe point le plus souvent mal compris : ces dix jours ne courent pas à partir de la signature. Ils commencent le lendemain de la première présentation de la lettre recommandée, ou de la remise de l'acte en main propre. Si le dixième jour tombe un week-end ou un jour férié, le délai se termine le premier jour ouvrable suivant.\n\nEntre la signature et la fin du délai, il s'écoule donc plus de dix jours. Mieux vaut l'intégrer avant d'organiser un déménagement ou un nouvel achat."
+  },
+  {
+   "key": "w1-ig-reel",
+   "channel": "instagram",
+   "dueAt": "2026-11-24T18:10:00+01:00",
+   "video": "ci-r6_retract.mp4",
+   "text": "Votre acheteur a signé le compromis. Il peut encore renoncer.\n\n10 jours de rétractation, sans justification ni pénalité. Et le délai ne part pas de la signature : il commence le lendemain de la première présentation de la lettre recommandée, ou de la remise de l'acte en main propre.\n\nSource : Code de la construction et de l'habitation, article L271-1.\n\n#ClayImmo #ImmobilierParis #ImmobilierAutrement #AgenceIndépendante #Paris6"
+  },
+  {
+   "key": "w1-google",
+   "channel": "google",
+   "dueAt": "2026-11-25T10:00:00+01:00",
+   "images": [
+    "g-w1.jpg"
+   ],
+   "alt": "Signature d'un compromis de vente",
+   "text": "Vendeurs : après la signature du compromis, l'acheteur dispose de 10 jours pour se rétracter, à compter du lendemain de la notification. Nous vous accompagnons à chaque étape jusqu'à l'acte. Estimation gratuite sur clayimmo.com"
+  },
+  {
+   "key": "w1-li-jeu",
+   "channel": "linkedin",
+   "dueAt": "2026-11-26T08:15:00+01:00",
+   "video": "ci-r6_retract.mp4",
+   "text": "10 jours : c'est le délai de rétractation de l'acquéreur après un compromis. Mais à partir de quand ? Réponse en 25 secondes."
+  },
+  {
+   "key": "w1-ig-carr",
+   "channel": "instagram",
+   "dueAt": "2026-11-27T12:30:00+01:00",
+   "images": [
+    "c6_retract-1.jpg",
+    "c6_retract-2.jpg",
+    "c6_retract-3.jpg",
+    "c6_retract-4.jpg",
+    "c6_retract-5.jpg"
+   ],
+   "alt": "Les 10 jours de rétractation en 5 pages",
+   "text": "Compromis signé, vente acquise ? Pas encore. Les 10 jours de rétractation en 4 points, à enregistrer avant de vendre.\n\nSource : Code de la construction et de l'habitation, article L271-1.\n\n#ClayImmo #ImmobilierParis #ImmobilierAutrement #AgenceIndépendante #Paris6"
+  },
+  {
+   "key": "w2-li-lun",
+   "channel": "linkedin",
+   "dueAt": "2026-11-30T08:15:00+01:00",
+   "images": [
+    "c7_carrez-1.jpg"
+   ],
+   "alt": "Votre surface est-elle vraiment exacte ?",
+   "text": "Quatre mètres carrés d'écart peuvent coûter près de 39 000 euros à un vendeur parisien.\n\nEn copropriété, la surface privative de la loi Carrez figure dans la promesse et dans l'acte. Si la surface réelle est inférieure de plus de 5 % à celle indiquée, l'acheteur peut demander une baisse du prix proportionnelle aux mètres carrés manquants (article 46 de la loi du 10 juillet 1965). Il a un an après la signature de l'acte authentique pour agir.\n\nAu prix moyen parisien de 9 670 euros le mètre carré (SeLoger MeilleursAgents, 1er septembre 2026), quatre mètres carrés représentent 38 680 euros.\n\nNotre recommandation : faire mesurer le bien par un professionnel avant la mise en vente, et revérifier un mesurage ancien ou antérieur à des travaux."
+  },
+  {
+   "key": "w2-ig-reel",
+   "channel": "instagram",
+   "dueAt": "2026-12-01T18:10:00+01:00",
+   "video": "ci-r7_carrez.mp4",
+   "text": "Annoncé 60 m², mesuré 56 m². En copropriété, au-delà de 5 % d'écart, l'acheteur peut demander une baisse du prix pendant un an.\n\nAu prix moyen parisien, 4 m² représentent près de 39 000 €. Faites mesurer votre bien avant de le mettre en vente.\n\nSources : loi du 10 juillet 1965, article 46 ; SeLoger MeilleursAgents, prix au 1er septembre 2026.\n\n#ClayImmo #ImmobilierParis #ImmobilierAutrement #AgenceIndépendante #Paris6"
+  },
+  {
+   "key": "w2-google",
+   "channel": "google",
+   "dueAt": "2026-12-02T10:00:00+01:00",
+   "images": [
+    "g-w2.jpg"
+   ],
+   "alt": "Façade d'immeuble parisien",
+   "text": "Vous vendez un appartement à Paris ? Vérifiez la surface Carrez avant la mise en vente : au-delà de 5 % d'écart, l'acheteur peut demander une baisse du prix pendant un an. Estimation gratuite sur clayimmo.com"
+  },
+  {
+   "key": "w2-li-jeu",
+   "channel": "linkedin",
+   "dueAt": "2026-12-03T08:15:00+01:00",
+   "video": "ci-r7_carrez.mp4",
+   "text": "Loi Carrez : le seuil de 5 % et ce qu'il peut coûter à un vendeur parisien, en 30 secondes."
+  },
+  {
+   "key": "w2-ig-carr",
+   "channel": "instagram",
+   "dueAt": "2026-12-04T12:30:00+01:00",
+   "images": [
+    "c7_carrez-1.jpg",
+    "c7_carrez-2.jpg",
+    "c7_carrez-3.jpg",
+    "c7_carrez-4.jpg",
+    "c7_carrez-5.jpg"
+   ],
+   "alt": "La loi Carrez en 5 pages",
+   "text": "Loi Carrez : 4 points à connaître avant de vendre un appartement en copropriété. À enregistrer.\n\nSources : loi du 10 juillet 1965, article 46 ; SeLoger MeilleursAgents.\n\n#ClayImmo #ImmobilierParis #ImmobilierAutrement #AgenceIndépendante #Paris6"
+  },
+  {
+   "key": "w3-li-lun",
+   "channel": "linkedin",
+   "dueAt": "2026-12-07T08:15:00+01:00",
+   "images": [
+    "c8_meubles-1.jpg"
+   ],
+   "alt": "Les meubles ne paient pas les droits de mutation",
+   "text": "Acheter meublé permet de réduire légalement la base des droits de mutation.\n\nLes droits de mutation portent sur le bien immobilier. Le mobilier vendu avec l'appartement en est exclu, à condition d'être listé et valorisé dans le compromis puis dans l'acte, à sa valeur réelle d'occasion.\n\nExemple publié par PAP : pour un prix de 250 000 euros dont 10 000 euros de mobilier, les droits sont calculés sur 240 000 euros.\n\nDeux limites. Une cuisine fixée, des placards encastrés ou des radiateurs font partie du bien. Et une valeur surévaluée ou des meubles fictifs exposent à un redressement en cas de contrôle."
+  },
+  {
+   "key": "w3-ig-reel",
+   "channel": "instagram",
+   "dueAt": "2026-12-08T18:10:00+01:00",
+   "video": "ci-r8_meubles.mp4",
+   "text": "Vous achetez un appartement meublé ? Le mobilier listé et chiffré dans l'acte n'entre pas dans la base des droits de mutation.\n\n250 000 € dont 10 000 € de meubles : droits calculés sur 240 000 €. Valeur réelle uniquement, une surévaluation expose à un redressement.\n\nSource : PAP, mars 2025.\n\n#ClayImmo #ImmobilierParis #ImmobilierAutrement #AgenceIndépendante #Paris6"
+  },
+  {
+   "key": "w3-google",
+   "channel": "google",
+   "dueAt": "2026-12-09T10:00:00+01:00",
+   "images": [
+    "g-w3.jpg"
+   ],
+   "alt": "Façade haussmannienne",
+   "text": "Acheteurs : le mobilier listé et valorisé dans l'acte n'entre pas dans la base des droits de mutation, à sa valeur réelle d'occasion. Une question avant d'acheter ? Contactez-nous sur clayimmo.com"
+  },
+  {
+   "key": "w3-li-jeu",
+   "channel": "linkedin",
+   "dueAt": "2026-12-10T08:15:00+01:00",
+   "video": "ci-r8_meubles.mp4",
+   "text": "Meubles et frais de notaire : ce qui compte, ce qui ne compte pas, en 30 secondes."
+  },
+  {
+   "key": "w3-ig-carr",
+   "channel": "instagram",
+   "dueAt": "2026-12-11T12:30:00+01:00",
+   "images": [
+    "c8_meubles-1.jpg",
+    "c8_meubles-2.jpg",
+    "c8_meubles-3.jpg",
+    "c8_meubles-4.jpg",
+    "c8_meubles-5.jpg"
+   ],
+   "alt": "Meubles et droits de mutation en 5 pages",
+   "text": "Meubles et frais de notaire : ce qui entre dans la liste, ce qui n'y entre pas. À enregistrer avant d'acheter meublé.\n\nSource : PAP, mars 2025.\n\n#ClayImmo #ImmobilierParis #ImmobilierAutrement #AgenceIndépendante #Paris6"
+  }
+ ]
+}
