@@ -1,0 +1,65 @@
+[
+ {
+  "id": "r1",
+  "sujet": "Taxe foncière en cas de vente",
+  "semaine": "2026-10-19",
+  "statut": "programme",
+  "note": "",
+  "par": null,
+  "le": null
+ },
+ {
+  "id": "r2",
+  "sujet": "Taux de crédit",
+  "semaine": "2026-10-26",
+  "statut": "a_valider",
+  "note": "",
+  "par": null,
+  "le": null
+ },
+ {
+  "id": "r3",
+  "sujet": "DPE 2026",
+  "semaine": "2026-11-02",
+  "statut": "a_valider",
+  "note": "",
+  "par": null,
+  "le": null
+ },
+ {
+  "id": "r5",
+  "sujet": "Fonds de travaux",
+  "semaine": "2026-11-16",
+  "statut": "a_valider",
+  "note": "",
+  "par": null,
+  "le": null
+ },
+ {
+  "id": "w1",
+  "sujet": "Les 10 jours de rétractation",
+  "semaine": "2026-11-23",
+  "statut": "a_valider",
+  "note": "",
+  "par": null,
+  "le": null
+ },
+ {
+  "id": "w2",
+  "sujet": "Loi Carrez : au-delà de 5 % d’écart",
+  "semaine": "2026-11-30",
+  "statut": "a_valider",
+  "note": "",
+  "par": null,
+  "le": null
+ },
+ {
+  "id": "w3",
+  "sujet": "Les meubles et les droits de mutation",
+  "semaine": "2026-12-07",
+  "statut": "a_valider",
+  "note": "",
+  "par": null,
+  "le": null
+ }
+]

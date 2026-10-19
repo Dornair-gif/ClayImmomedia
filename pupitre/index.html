@@ -1,0 +1,216 @@
+<title>Pupitre ClayImmo</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;1,500&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: a calm editorial desk. Header with counts, filter tabs, then one band per publication week, cards in a responsive grid. */
+:root{
+  --bg:#FBFAF7; --surface:#FFFFFF; --sand:#F1EEE7; --line:#E3DED4;
+  --ink:#2B2A27; --muted:#77716A; --blue:#33415C; --blue-soft:#E6EAF1;
+  --cta:#E85D10; --cta-ink:#FFFFFF;
+  --ok:#2F6B4F; --ok-soft:#E3F0E8; --warn:#9A5B0E; --warn-soft:#F7ECDB;
+  --display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#1C2027; --surface:#242A33; --sand:#2B323C; --line:#38404C;
+  --ink:#ECE8E1; --muted:#A39D94; --blue:#9FB2D4; --blue-soft:#2C3647;
+  --cta:#F0773A; --cta-ink:#1C2027;
+  --ok:#8CCBA9; --ok-soft:#24392F; --warn:#E5B36B; --warn-soft:#3B2F1F; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#1C2027; --surface:#242A33; --sand:#2B323C; --line:#38404C;
+  --ink:#ECE8E1; --muted:#A39D94; --blue:#9FB2D4; --blue-soft:#2C3647;
+  --cta:#F0773A; --cta-ink:#1C2027;
+  --ok:#8CCBA9; --ok-soft:#24392F; --warn:#E5B36B; --warn-soft:#3B2F1F; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 15px/1.55 var(--body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
+.wrap{max-width:1180px;margin:0 auto;display:grid;gap:28px}
+header{display:grid;gap:14px}
+.eyebrow{font:600 11px/1 var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+h1{font:500 clamp(36px,6vw,56px)/1 var(--display);margin:0;text-wrap:balance}
+h1 em{font-style:italic}
+.how{max-width:68ch;margin:0;color:var(--muted)}
+.counts{display:flex;flex-wrap:wrap;gap:10px}
+.tab{appearance:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:500 13px/1 var(--body);padding:10px 14px;border-radius:999px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.tab b{font-variant-numeric:tabular-nums;font-weight:600}
+.tab[aria-pressed="true"]{background:var(--blue);border-color:var(--blue);color:var(--bg)}
+.tab:focus-visible,.btn:focus-visible,textarea:focus-visible{outline:2px solid var(--cta);outline-offset:2px}
+.note-ro{font-size:13px;color:var(--muted)}
+section.week{display:grid;gap:14px}
+.weekhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px;border-top:1px solid var(--ink);padding-top:12px}
+.weekhead h2{font:500 28px/1.1 var(--display);margin:0}
+.weekhead span{font:600 11px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:4px;display:grid;min-width:0}
+.card header{display:flex;justify-content:space-between;gap:8px;padding:12px 14px 0;font:600 11px/1.3 var(--body);letter-spacing:.16em;text-transform:uppercase}
+.card header .code{color:var(--muted);letter-spacing:.06em;text-transform:none;font-weight:500}
+.when{padding:4px 14px 10px;font-size:13px;color:var(--muted)}
+.media{background:var(--sand)}
+.media video,.media img{display:block;width:100%;max-width:100%;height:auto}
+.strip{display:flex;gap:6px;overflow-x:auto;padding:6px;scroll-snap-type:x mandatory}
+.strip img{width:78%;flex:0 0 78%;scroll-snap-align:start}
+.body{padding:12px 14px;display:grid;gap:8px;min-width:0}
+.title{font:500 19px/1.25 var(--display)}
+.txt{white-space:pre-wrap;overflow-wrap:anywhere;font-size:14px;max-height:9.5em;overflow:hidden;position:relative}
+.txt.open{max-height:none}
+.more{appearance:none;background:none;border:0;padding:0;color:var(--blue);font:500 13px var(--body);cursor:pointer;justify-self:start}
+.foot{border-top:1px solid var(--line);padding:12px 14px;display:grid;gap:10px}
+.pill{justify-self:start;font:600 11px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;padding:7px 10px;border-radius:999px}
+.s-a_valider{background:var(--sand);color:var(--ink)}
+.s-valide{background:var(--blue-soft);color:var(--blue)}
+.s-a_corriger{background:var(--warn-soft);color:var(--warn)}
+.s-programme,.s-publie{background:var(--ok-soft);color:var(--ok)}
+.who{font-size:13px;color:var(--muted)}
+.notebox{font-size:13px;background:var(--warn-soft);color:var(--ink);padding:8px 10px;border-radius:4px;white-space:pre-wrap}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{appearance:none;font:600 12px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;padding:11px 14px;border-radius:2px;cursor:pointer;border:1px solid var(--ink);background:transparent;color:var(--ink)}
+.btn.primary{border-color:var(--cta);background:var(--cta);color:var(--cta-ink)}
+.btn.ghost{border-color:transparent;color:var(--muted);padding-inline:4px;text-transform:none;letter-spacing:0;font-weight:500;font-size:13px}
+.btn[disabled]{opacity:.5;cursor:wait}
+textarea{width:100%;min-height:76px;font:400 14px/1.45 var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:2px;padding:8px}
+.empty{border:1px dashed var(--line);padding:28px;text-align:center;color:var(--muted);border-radius:4px}
+.err{color:var(--warn);font-size:13px}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .2s}.card:hover{border-color:var(--muted)}}
+.subject{display:grid;gap:14px;border-top:1px solid var(--ink);padding-top:14px}
+.shead{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px 20px;align-items:start}
+@media (max-width:640px){.shead{grid-template-columns:minmax(0,1fr)}}
+.shead h2{font:500 30px/1.1 var(--display);margin:0;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:6px 12px;align-items:center;margin-top:6px}
+.meta .wk{font:600 11px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font:500 12px/1 var(--body);padding:6px 9px;border-radius:999px;background:var(--sand);color:var(--ink);white-space:nowrap}
+.chip.done{background:var(--ok-soft);color:var(--ok)}
+.decide{display:grid;gap:8px;justify-items:end;min-width:0}
+@media (max-width:640px){.decide{justify-items:start}}
+details>summary{cursor:pointer;font:500 13px var(--body);color:var(--blue);list-style:none}
+details>summary::-webkit-details-marker{display:none}
+details>summary::before{content:"+ "}
+details[open]>summary::before{content:"− "}
+details .grid{margin-top:12px}
+.mini{font:600 10px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;padding:5px 8px;border-radius:999px;justify-self:start}
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">ClayImmo · réseaux sociaux</span>
+    <h1>Pupitre <em>ClayImmo</em></h1>
+    <p class="how">Un sujet se valide une seule fois : la validation couvre toutes ses déclinaisons (reel, carrousel, LinkedIn, fiche Google, YouTube). Ouvrez les déclinaisons pour relire les textes et les visuels, puis validez le sujet ou demandez une correction en quelques mots. Les sujets validés sont programmés automatiquement chaque matin ; rien ne part sans validation.</p>
+    <div class="counts" id="tabs" role="group" aria-label="Filtrer">
+      <button class="tab" id="t-todo" data-f="todo" aria-pressed="true">À valider <b id="n-todo">·</b></button>
+      <button class="tab" id="t-ok" data-f="ok" aria-pressed="false">Validé, en attente <b id="n-ok">·</b></button>
+      <button class="tab" id="t-fix" data-f="fix" aria-pressed="false">À corriger <b id="n-fix">·</b></button>
+      <button class="tab" id="t-live" data-f="live" aria-pressed="false">Programmé <b id="n-live">·</b></button>
+      <button class="tab" id="t-all" data-f="all" aria-pressed="false">Tout <b id="n-all">·</b></button>
+    </div>
+    <p class="note-ro" id="ro" hidden>Vous voyez le pupitre en lecture seule. Pour valider, demandez à Maneli un accès qui permet d’utiliser la page.</p>
+  </header>
+  <main id="list"><div class="empty">Le pupitre se charge. Les sujets à valider apparaîtront ici, avec toutes leurs déclinaisons.</div></main>
+</div>
+
+<script>
+const CH={instagram:'Instagram',linkedin:'LinkedIn',google:'Fiche Google',youtube:'YouTube'};
+const ST={a_valider:'À valider',valide:'Validé',a_corriger:'À corriger',programme:'Programmé',publie:'Publié'};
+const GROUP={todo:['a_valider'],ok:['valide'],fix:['a_corriger'],live:['programme','publie'],all:null};
+const S={subjects:[],items:[],filter:'todo',uid:null,canWrite:false,names:{},open:{},fold:{},fixing:{},busy:{},err:{}};
+let DB=null,USER=null;
+try{const f=localStorage.getItem('pupitre-filter');if(f&&f in GROUP)S.filter=f}catch(e){}
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmtDate=iso=>{try{return new Date(iso).toLocaleString('fr-FR',{weekday:'long',day:'numeric',month:'long',hour:'2-digit',minute:'2-digit',timeZone:'Europe/Paris'}).replace(':','h')}catch(e){return iso}};
+const fmtShort=iso=>{try{return new Date(iso).toLocaleDateString('fr-FR',{day:'numeric',month:'short',timeZone:'Europe/Paris'})}catch(e){return ''}};
+const fmtWeek=d=>{try{return 'Semaine du '+new Date(d+'T12:00:00').toLocaleDateString('fr-FR',{day:'numeric',month:'long'})}catch(e){return d}};
+function media(it){
+  const m=it.media||[];
+  if(!m.length) return '';
+  if(m[0].endsWith('.mp4')) return `<div class="media"><video controls preload="none" playsinline src="${esc(m[0])}"></video></div>`;
+  if(m.length===1) return `<div class="media"><img src="${esc(m[0])}" alt="" loading="lazy"></div>`;
+  return `<div class="media"><div class="strip">${m.map((p,i)=>`<img src="${esc(p)}" alt="Page ${i+1}" loading="lazy">`).join('')}</div></div>`;
+}
+function card(it){
+  const k=it.id, done=it.statut==='programme'||it.statut==='publie';
+  return `<article class="card">
+    <header><span>${esc(CH[it.canal]||it.canal)} · ${esc(it.format)}</span><span class="code">${esc(it.key)}</span></header>
+    <div class="when">${esc(fmtDate(it.date))}</div>
+    ${media(it)}
+    <div class="body">${it.titre?`<div class="title">${esc(it.titre)}</div>`:''}
+      <div class="txt ${S.open[k]?'open':''}">${esc(it.texte)}</div>
+      ${(it.texte||'').length>260?`<button class="more" data-a="more" data-k="${k}">${S.open[k]?'Réduire':'Lire tout le texte'}</button>`:''}
+      ${done?`<span class="mini s-programme">${esc(it.publication||'Programmé')}</span>`:''}
+    </div>
+  </article>`;
+}
+function subject(sj,items){
+  const k=sj.id, locked=sj.statut==='programme'||sj.statut==='publie';
+  const who=sj.par?`${sj.statut==='a_corriger'?'Correction demandée':'Validé'} par ${esc(S.names[sj.par]||'un membre de l’équipe')}${sj.le?', le '+esc(new Date(sj.le).toLocaleDateString('fr-FR',{day:'numeric',month:'long'})):''}`:'';
+  let actions='';
+  if(S.canWrite&&!locked){
+    if(S.fixing[k]){
+      actions=`<label class="who" for="fx-${k}">Ce qu’il faut changer (précisez la déclinaison si besoin)</label><textarea id="fx-${k}" data-k="${k}">${esc(S.fixing[k]===true?'':S.fixing[k])}</textarea>
+      <div class="actions"><button class="btn primary" data-a="sendfix" data-k="${k}" ${S.busy[k]?'disabled':''}>Envoyer la correction</button><button class="btn ghost" data-a="cancelfix" data-k="${k}">Annuler</button></div>`;
+    }else if(sj.statut==='a_valider'){
+      actions=`<div class="actions"><button class="btn primary" data-a="ok" data-k="${k}" ${S.busy[k]?'disabled':''}>Valider le sujet</button><button class="btn" data-a="fix" data-k="${k}">Demander une correction</button></div>`;
+    }else{
+      actions=`<div class="actions"><button class="btn ghost" data-a="reset" data-k="${k}" ${S.busy[k]?'disabled':''}>Remettre à valider</button></div>`;
+    }
+  }
+  const chips=items.map(it=>`<span class="chip ${it.statut==='programme'||it.statut==='publie'?'done':''}">${esc(CH[it.canal]||it.canal)} ${esc(it.format.toLowerCase())} · ${esc(fmtShort(it.date))}</span>`).join('');
+  const isOpen = k in S.fold ? S.fold[k] : !locked;
+  return `<section class="subject">
+    <div class="shead">
+      <div><h2>${esc(sj.sujet)}</h2>
+        <div class="meta"><span class="wk">${esc(fmtWeek(sj.semaine))}</span><span class="pill s-${esc(sj.statut)}">${esc(ST[sj.statut]||sj.statut)}</span></div></div>
+      <div class="decide">${who?`<div class="who">${who}</div>`:''}${S.err[k]?`<div class="err">${esc(S.err[k])}</div>`:''}${actions}</div>
+    </div>
+    ${sj.note&&sj.statut==='a_corriger'?`<div class="notebox">${esc(sj.note)}</div>`:''}
+    <div class="chips">${chips}</div>
+    <details data-k="${k}" ${isOpen?'open':''}><summary>${items.length} déclinaison${items.length>1?'s':''}</summary><div class="grid">${items.map(card).join('')}</div></details>
+  </section>`;
+}
+function render(){
+  const c={todo:0,ok:0,fix:0,live:0,all:S.subjects.length};
+  for(const sj of S.subjects){for(const g of ['todo','ok','fix','live']) if(GROUP[g].includes(sj.statut)) c[g]++;}
+  for(const g in c){const el=document.getElementById('n-'+g); if(el) el.textContent=c[g];}
+  document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-pressed',String(t.dataset.f===S.filter)));
+  const list=document.getElementById('list');
+  if(!S.subjects.length){list.innerHTML='<div class="empty">Aucun sujet pour le moment. Les prochains sujets préparés par Claude apparaîtront ici, prêts à valider.</div>';return}
+  const f=GROUP[S.filter];
+  const rows=S.subjects.filter(s=>!f||f.includes(s.statut)).sort((a,b)=>String(a.semaine).localeCompare(String(b.semaine)));
+  if(!rows.length){list.innerHTML='<div class="empty">Rien dans cette catégorie.</div>';return}
+  list.innerHTML=rows.map(sj=>subject(sj,S.items.filter(i=>i.sujet_id===sj.id).sort((a,b)=>String(a.date).localeCompare(String(b.date))))).join('');
+}
+async function resolveNames(){
+  if(!USER) return;
+  const ids=[...new Set(S.subjects.map(i=>i.par).filter(Boolean))];
+  if(!ids.length) return;
+  try{const ps=await USER.profiles(ids); let ch=false; for(const id of ids){const n=(ps[id]&&ps[id].name)||''; if(n&&S.names[id]!==n){S.names[id]=n;ch=true}} if(ch) render();}catch(e){}
+}
+async function act(k,patch){
+  if(!DB) return;
+  S.busy[k]=true; S.err[k]=''; render();
+  try{await DB.collection('sujets').doc(k).update(patch); delete S.fixing[k];}
+  catch(e){S.err[k]= e&&e.code==='not_granted'?'Votre accès ne permet pas de valider. Demandez à Maneli un accès qui permet d’utiliser la page.':'L’enregistrement a échoué. Réessayez dans un instant.'}
+  S.busy[k]=false; render();
+}
+document.addEventListener('toggle',e=>{if(e.target.matches&&e.target.matches('details[data-k]')) S.fold[e.target.dataset.k]=e.target.open},true);
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-f],[data-a]'); if(!t) return;
+  if(t.dataset.f){S.filter=t.dataset.f; try{localStorage.setItem('pupitre-filter',S.filter)}catch(_){} render(); return}
+  const k=t.dataset.k, a=t.dataset.a, now=new Date().toISOString();
+  if(a==='more'){S.open[k]=!S.open[k]; render()}
+  else if(a==='ok') act(k,{statut:'valide',par:S.uid,le:now,note:''});
+  else if(a==='fix'){S.fixing[k]=true; render(); document.getElementById('fx-'+k)?.focus()}
+  else if(a==='cancelfix'){delete S.fixing[k]; render()}
+  else if(a==='sendfix'){const v=(document.getElementById('fx-'+k)?.value||'').trim(); if(!v){S.err[k]='Écrivez ce qu’il faut changer.'; render(); return} act(k,{statut:'a_corriger',note:v,par:S.uid,le:now})}
+  else if(a==='reset') act(k,{statut:'a_valider',par:null,le:null,note:''});
+});
+document.addEventListener('input',e=>{if(e.target.matches('textarea[data-k]')) S.fixing[e.target.dataset.k]=e.target.value||true});
+render();
+(async()=>{
+  if(!window.claude||!window.claude.use) return;
+  [DB,USER]=await Promise.all([window.claude.use('db'),window.claude.use('user')]);
+  if(USER){try{S.uid=await USER.id()}catch(e){} try{const c=await USER.can('data.write'); S.canWrite=c!==false}catch(e){S.canWrite=true}}
+  if(!S.canWrite) document.getElementById('ro').hidden=false;
+  if(!DB){document.getElementById('list').innerHTML='<div class="empty">Connectez-vous à Claude pour voir le pupitre.</div>';return}
+  const fail=()=>{document.getElementById('list').innerHTML='<div class="empty">Le pupitre ne répond pas. Rechargez la page dans un instant.</div>'};
+  DB.collection('sujets').onSnapshot(s=>{S.subjects=s.docs.map(d=>({id:d.id,...d.data()})); render(); resolveNames();},fail);
+  DB.collection('items').onSnapshot(s=>{S.items=s.docs.map(d=>({id:d.id,...d.data()})); render();},fail);
+})();
+</script>
