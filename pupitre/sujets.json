@@ -6,7 +6,8 @@
   "statut": "programme",
   "note": "",
   "par": null,
-  "le": null
+  "le": null,
+  "rev": 1
  },
  {
   "id": "r2",
@@ -15,16 +16,19 @@
   "statut": "a_valider",
   "note": "",
   "par": null,
-  "le": null
+  "le": null,
+  "rev": 1
  },
  {
   "id": "r3",
   "sujet": "DPE 2026",
   "semaine": "2026-11-02",
-  "statut": "a_valider",
-  "note": "",
+  "statut": "a_corriger",
+  "note": "En attente : la règle change au 1er janvier 2027 (coefficient électricité de 1,9 à 1,7, arrêté du 19 août 2026). Sujet à refaire pour début janvier ; ne pas valider en l'état.",
   "par": null,
-  "le": null
+  "le": null,
+  "rev": 2,
+  "imposer_statut": true
  },
  {
   "id": "r5",
@@ -33,7 +37,8 @@
   "statut": "a_valider",
   "note": "",
   "par": null,
-  "le": null
+  "le": null,
+  "rev": 1
  },
  {
   "id": "w1",
@@ -42,7 +47,8 @@
   "statut": "a_valider",
   "note": "",
   "par": null,
-  "le": null
+  "le": null,
+  "rev": 1
  },
  {
   "id": "w2",
@@ -51,7 +57,8 @@
   "statut": "a_valider",
   "note": "",
   "par": null,
-  "le": null
+  "le": null,
+  "rev": 1
  },
  {
   "id": "w3",
@@ -60,6 +67,7 @@
   "statut": "a_valider",
   "note": "",
   "par": null,
-  "le": null
+  "le": null,
+  "rev": 1
  }
 ]

@@ -58,6 +58,7 @@ section.week{display:grid;gap:14px}
 .s-a_valider{background:var(--sand);color:var(--ink)}
 .s-valide{background:var(--blue-soft);color:var(--blue)}
 .s-a_corriger{background:var(--warn-soft);color:var(--warn)}
+.s-annule{background:var(--sand);color:var(--muted);text-decoration:line-through}
 .s-programme,.s-publie{background:var(--ok-soft);color:var(--ok)}
 .who{font-size:13px;color:var(--muted)}
 .notebox{font-size:13px;background:var(--warn-soft);color:var(--ink);padding:8px 10px;border-radius:4px;white-space:pre-wrap}
@@ -108,7 +109,7 @@ details .grid{margin-top:12px}
 
 <script>
 const CH={instagram:'Instagram',linkedin:'LinkedIn',google:'Fiche Google',youtube:'YouTube'};
-const ST={a_valider:'À valider',valide:'Validé',a_corriger:'À corriger',programme:'Programmé',publie:'Publié'};
+const ST={a_valider:'À valider',valide:'Validé',a_corriger:'À corriger',programme:'Programmé',publie:'Publié',annule:'Retiré'};
 const GROUP={todo:['a_valider'],ok:['valide'],fix:['a_corriger'],live:['programme','publie'],all:null};
 const S={subjects:[],items:[],filter:'todo',uid:null,canWrite:false,names:{},open:{},fold:{},fixing:{},busy:{},err:{}};
 let DB=null,USER=null;

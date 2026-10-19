@@ -28,6 +28,10 @@ Règles de rédaction : français, aucun tiret long ni demi-cadratin, aucun chif
    - partager le nouveau Pupitre avec l'équipe (menu Share, membres de l'organisation, droit d'édition pour qu'ils puissent valider) ;
    - demander, dans la conversation d'origine du compte personnel, de désactiver l'ancienne tâche « Pupitre ClayImmo · programmation des validations », pour éviter une double programmation.
 
+## Mise à jour du 19 octobre : fonctionnement entre les deux espaces
+
+Maneli prépare et produit les contenus dans son compte personnel. L'équipe consulte, valide et commente dans l'organisation. Le dépôt GitHub fait le lien dans les deux sens : `pupitre/sujets.json` et `pupitre/items.json` apportent les contenus (avec un numéro `rev`), `pupitre/retours.json` rapporte les validations et les commentaires. La tâche quotidienne de l'organisation (texte dans `routine.md`) fait l'import, la programmation et l'export. Si cette tâche existe déjà, remplace son texte par celui de `routine.md` (avec l'URL du Pupitre de l'organisation).
+
 ## Ce qui ne change pas
 
 - Le moteur de publication (Railway, projet clayimmo-media) et sa clé Buffer restent en place. Il lit `planned/*.json` dans ce dépôt et envoie à Buffer, au plus 7 posts à l'avance.
